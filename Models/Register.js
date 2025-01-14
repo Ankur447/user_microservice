@@ -27,7 +27,7 @@ const register = async (user,req,res) => {
 
         const [result] = await connection.query(sql, [name, email, hashedPassword]);
         const userId = result.insertId;
-        const initialBalance = 100000000;
+        const initialBalance = 10000000;
         
        const walletResult= await createWalletForUser(userId, initialBalance);
        console.log(walletResult);
@@ -52,7 +52,7 @@ const createWalletForUser = async (userId) => {
   `;
 
   try {
-    const response = await axios.post(`${WALLET_MICROSERVICE_URL}/graphql`, {
+    const response = await axios.post('https://wallet-microservice-w39s.onrender.com/graphql', {
       query: mutation,
     });
     console.log('Wallet created:', response.data.data.createWallet);
@@ -63,3 +63,4 @@ const createWalletForUser = async (userId) => {
 };
 
 module.exports = { register };
+0
