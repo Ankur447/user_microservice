@@ -52,7 +52,7 @@ const createWalletForUser = async (userId) => {
   `;
 
   try {
-    const response = await axios.post('http://localhost:3001/graphql', {
+    const response = await axios.post(`${WALLET_MICROSERVICE_URL}/graphql`, {
       query: mutation,
     });
     console.log('Wallet created:', response.data.data.createWallet);
